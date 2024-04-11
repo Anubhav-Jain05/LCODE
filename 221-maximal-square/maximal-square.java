@@ -20,9 +20,7 @@ class Solution {
             matrix[currentrow][currentcol] == '0'){
                 return 0;
         }
-        // if(currentrow == m-1 && currentcol ==n-1){
-        //     return matrix[currentrow][currentcol];
-        // }
+
         String currentKey=currentrow + "-" + currentcol;
         if(map.containsKey(currentKey)){
             return map.get(currentKey);
