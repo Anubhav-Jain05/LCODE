@@ -7,11 +7,12 @@ class Solution {
             return 0;
         }
         int ans= 1000000;
-        String currentKey=start +"-"+end;
+        // String currentKey=start +"-"+end;
+        String currentKey=Integer.toString(start); //O(n)
         if(memo.containsKey(currentKey)){
             return memo.get(currentKey);
         }
-        for(int i=start;i<end;i++){
+        for(int i=start;i<end;i++){ // line no 15 and 16 TC will be O(n2)
             if(isPlaindrome(s,start,i)){ 
                 // check if the left half is palindrome then we have 
                 // make a cut otherwise we have not make a cut
