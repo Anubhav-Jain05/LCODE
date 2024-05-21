@@ -22,9 +22,9 @@ class Solution {
     private void preOrder(TreeNode root,List<Integer>ans){
         if(root== null)return;
 
-        ans.add(root.val);
+        ans.add(root.val); // first add the root node in ans 
 
-        preOrder(root.left,ans);
+        preOrder(root.left,ans); // after add the root node in ans we want to traversal from left;
         preOrder(root.right,ans);
 
         return;
