@@ -25,9 +25,9 @@ class Solution {
         if(root == null)return 0;
 
         int ans=0;
-        for(Node currentNode:root.children){
-            ans= Math.max(ans,height(currentNode));
+        for(Node children : root.children){
+            ans= Math.max(ans,height(children));
         }
-        return 1+ans;
+        return 1 + ans;
     }
 }
