@@ -28,8 +28,8 @@ class Solution {
 
         ans.add(root.val);
 
-        List<Node>childern=root.children;
-        for(Node child:childern){
+        // List<Node>childern=root.children;
+        for(Node child:root.children){
             nAry(child,ans);
         }
 
