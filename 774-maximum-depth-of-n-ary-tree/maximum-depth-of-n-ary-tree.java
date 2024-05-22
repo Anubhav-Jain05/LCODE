@@ -19,14 +19,14 @@ class Node {
 
 class Solution {
     public int maxDepth(Node root) {
-        return height(root);
+       return maximumHeight(root);
     }
-    private int height(Node root){
+    private int maximumHeight(Node root){
         if(root == null)return 0;
 
         int ans=0;
-        for(Node children : root.children){
-            ans= Math.max(ans,height(children));
+        for(Node child : root.children){
+            ans= Math.max(ans,maximumHeight(child));
         }
         return 1 + ans;
     }
