@@ -19,15 +19,15 @@ class Node {
 
 class Solution {
     public List<Integer> postorder(Node root) {
-        List<Integer> ans= new ArrayList<>();
-        nPostOrder(root,ans);
-        return ans;
+       List<Integer> ans= new ArrayList<>();
+       postTraversal(root,ans);
+       return ans;
     }
-    private void nPostOrder(Node root,List<Integer>ans){
-        if(root == null)return ;
+    private void postTraversal(Node root,List<Integer>ans){
+        if(root== null)return;
 
         for(Node child:root.children){
-            nPostOrder(child,ans);
+            postTraversal(child,ans);
         }
         ans.add(root.val);
         return;
