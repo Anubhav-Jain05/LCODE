@@ -15,26 +15,15 @@
  */
 class Solution {
     public int sumOfLeftLeaves(TreeNode root) {
-     Queue<TreeNode> q=new LinkedList<>();
-     if(root == null)return 0;
-     q.add(root);
-     int sum =0;
-     while(!q.isEmpty()){
-        int cnt=q.size();
-        for(int i=0;i<cnt;i++){
-            TreeNode node = q.poll();
-            if(node.left!= null && node.left.left == null && node.left.right == null){
-                sum += node.left.val;      
-            }
-            if(node.left != null){
-                q.add(node.left);
-            }
-            if(node.right != null){
-                q.add(node.right);
-            }
+        return leftSum(root,false);
+    }
+    private int leftSum(TreeNode root,Boolean leaf){
+        if(root == null)return 0;
+        if(root.left == null && root.right == null){
+            return leaf ? root.val : 0;
         }
-    
-     }   
-         return sum;
+        int left=leftSum(root.left,true);
+        int right=leftSum(root.right,false);
+        return left + right;
     }
 }
