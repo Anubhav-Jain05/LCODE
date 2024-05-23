@@ -15,21 +15,22 @@
  */
 class Solution {
     public int sumRootToLeaf(TreeNode root) {
-        if(root == null)return 0;
-        return binarySum(root,"");
+        int[] ans={0};
+        rootLeaf(root,"" + Integer.toString(root.val),ans);
+        return ans[0];
     }
-    private int binarySum(TreeNode root, String currentNode){
-        if(root.left == null & root.right == null){
-            return Integer.parseInt(currentNode + String.valueOf(root.val),2);
+    private void rootLeaf(TreeNode root,String currentNode,int[]ans){
+        if(root.left == null && root.right == null){
+            ans[0] += Integer.parseInt(currentNode,2);
+            return;
         }
-        int left=0;
-        int right=0;
         if(root.left != null){
-            left = binarySum(root.left,currentNode + String.valueOf(root.val));
+            rootLeaf(root.left,currentNode + Integer.toString(root.left.val),ans);
         }
         if(root.right != null){
-            right= binarySum(root.right,currentNode + String.valueOf(root.val));
+            rootLeaf(root.right,currentNode + Integer.toString(root.right.val),ans);
         }
-        return left + right;
+        return;
+
     }
 }
