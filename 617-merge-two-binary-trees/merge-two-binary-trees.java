@@ -15,20 +15,15 @@
  */
 class Solution {
     public TreeNode mergeTrees(TreeNode root1, TreeNode root2) {
-        return sumTrees(root1,root2);
+       return mergeNode(root1,root2);
     }
-
-    private TreeNode sumTrees(TreeNode root1,TreeNode root2){
-        // if(root1==null && root2 == null)return null;
-
-        // if(root1 != null && root2 == null)return root1;
-        // if(root1 == null && root2 != null)return root2;
+    private TreeNode mergeNode(TreeNode root1,TreeNode root2){
         if(root1 == null)return root2;
         if(root2 == null)return root1;
-        TreeNode newNode= new TreeNode(root1.val + root2.val);
-        newNode.left=sumTrees(root1.left,root2.left);
-        newNode.right=sumTrees(root1.right,root2.right);
 
+        TreeNode newNode= new TreeNode(root1.val + root2.val);
+        newNode.left=mergeNode(root1.left,root2.left);
+        newNode.right= mergeNode(root1.right,root2.right);
         return newNode;
     }
 }
