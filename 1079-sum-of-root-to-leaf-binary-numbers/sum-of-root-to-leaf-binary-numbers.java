@@ -15,22 +15,39 @@
  */
 class Solution {
     public int sumRootToLeaf(TreeNode root) {
-        int[] ans={0};
-        rootLeaf(root,"" + Integer.toString(root.val),ans);
+        // int[] ans={0};
+        // rootLeaf(root,"" + Integer.toString(root.val),ans);
+        // return ans[0];
+
+        int[] ans ={0};
+        rootleaf(root,"" + Integer.toString(root.val),ans);
         return ans[0];
     }
-    private void rootLeaf(TreeNode root,String currentNode,int[]ans){
+    private void rootleaf(TreeNode root,String currentNode,int[] ans){
         if(root.left == null && root.right == null){
             ans[0] += Integer.parseInt(currentNode,2);
             return;
         }
         if(root.left != null){
-            rootLeaf(root.left,currentNode + Integer.toString(root.left.val),ans);
+            rootleaf(root.left,currentNode + Integer.toString(root.left.val),ans);
         }
         if(root.right != null){
-            rootLeaf(root.right,currentNode + Integer.toString(root.right.val),ans);
+            rootleaf(root.right,currentNode + Integer.toString(root.right.val),ans);
         }
         return;
-
     }
+    // private void rootLeaf(TreeNode root,String currentNode,int[]ans){
+    //     if(root.left == null && root.right == null){
+    //         ans[0] += Integer.parseInt(currentNode,2);
+    //         return;
+    //     }
+    //     if(root.left != null){
+    //         rootLeaf(root.left,currentNode + Integer.toString(root.left.val),ans);
+    //     }
+    //     if(root.right != null){
+    //         rootLeaf(root.right,currentNode + Integer.toString(root.right.val),ans);
+    //     }
+    //     return;
+
+    // }
 }
