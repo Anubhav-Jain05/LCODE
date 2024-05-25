@@ -30,5 +30,6 @@ class Solution {
             npostOrder(child,ans);
         }
         ans.add(root.val);
+        return;
     }
 }
