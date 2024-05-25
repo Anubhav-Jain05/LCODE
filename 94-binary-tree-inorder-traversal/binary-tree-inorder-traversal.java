@@ -26,5 +26,6 @@ class Solution {
         inOrder(root.left,ans);
         ans.add(root.val);
         inOrder(root.right,ans);
+        return ;
     }
 }
