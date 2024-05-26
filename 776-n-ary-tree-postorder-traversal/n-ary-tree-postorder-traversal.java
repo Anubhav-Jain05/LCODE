@@ -20,16 +20,23 @@ class Node {
 class Solution {
     public List<Integer> postorder(Node root) {
        List<Integer> ans = new ArrayList<>();
-       npostOrder(root,ans);
-       return ans;
-    }
-    private void npostOrder(Node root,List<Integer> ans){
-        if(root == null)return;
-
-        for(Node child : root.children){
-            npostOrder(child,ans);
+        Stack<Node> stack=new Stack<>();
+        if(root == null){
+            return ans;
         }
-        ans.add(root.val);
-        return;
+        stack.push(root);
+        while(!stack.isEmpty()){
+            Node currentNode =stack.pop();
+            ans.add(currentNode.val);
+
+          List<Node>children=currentNode.children;
+
+          for(int i=0;i<children.size();i++){
+            Node currentChild=children.get(i);
+            stack.push(currentChild);
+          }
+        }
+        Collections.reverse(ans);
+        return ans;
     }
 }
