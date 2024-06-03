@@ -15,17 +15,27 @@
  */
 class Solution {
     public boolean isUnivalTree(TreeNode root) {
-       return isValue(root,root.val);
-    
-    }
-    private boolean isValue(TreeNode root,int val){
-        if(root == null)return true;
+       Queue<TreeNode> queue= new LinkedList<>();
 
-        if(root.val != val)return false;
+       
+        queue.add(root);
+        int requiredValue=root.val;
+        while(!queue.isEmpty()){
+            int currentLevel=queue.size();
 
-        boolean left=isValue(root.left,val);
-        boolean right=isValue(root.right,val);
+                TreeNode currentNode =queue.remove();
+                if(currentNode.val != requiredValue){
+                    return false;
+                }
 
-        return left && right;
+                if(currentNode.left != null){
+                    queue.add(currentNode.left);
+                }
+                if(currentNode.right != null){
+                    queue.add(currentNode.right);
+                }
+                currentLevel -= 1;
+        }
+        return true;
     }
 }
