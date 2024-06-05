@@ -31,11 +31,17 @@ class Solution {
 
         while(!queue.isEmpty()){
             int currentSize=queue.size();
-            ArrayList<Node> currentLevel= new ArrayList<>();
+            // ArrayList<Node> currentLevel= new ArrayList<>();
+            Node previous = null;
 
             for(int i=0;i<currentSize;i++){
                 Node currentNode= queue.remove();
-                currentLevel.add(currentNode);
+                // currentLevel.add(currentNode);
+
+                if(i != 0){
+                    previous.next=currentNode;
+                }
+                previous=currentNode;
 
                 if(currentNode.left != null){
                     queue.add(currentNode.left);
@@ -44,13 +50,13 @@ class Solution {
                     queue.add(currentNode.right);
                 }
             }
-            for(int i=0;i<currentSize;i++){
-                if(i == currentSize-1){
-                    currentLevel.get(i).next=null;
-                }else{
-                    currentLevel.get(i).next=currentLevel.get(i + 1);
-                }
-            }
+            // for(int i=0;i<currentSize;i++){
+            //     if(i == currentSize-1){
+            //         currentLevel.get(i).next=null;
+            //     }else{
+            //         currentLevel.get(i).next=currentLevel.get(i + 1);
+            //     }
+            // }
         }
         return root;
     }
