@@ -13,27 +13,53 @@
  *     }
  * }
  */
+ class Pair{
+    TreeNode node;
+    TreeNode parent;
+
+    Pair(TreeNode node,TreeNode parent){
+        this.node = node;
+        this.parent=parent;
+    }
+ }
 class Solution {
     public boolean isCousins(TreeNode root, int x, int y) {
-        int[] parent=new int[2];
-        int[] level=new int[2];
-        isParentLevel(root,new TreeNode(-1),0,x,y,parent,level);
-        return parent[0] != parent[1] && level[0]==level[1];
-    }
-    public void isParentLevel(TreeNode root,TreeNode currentparent,int currentlevel,
-    int x,int y,int  [] parent,int[] level){
-        if(root==null)return;
-        if(root.val == x){
-            parent[0]=currentparent.val;
-            level[0]=currentlevel;
-        }
-        if(root.val == y){
-            parent[1]=currentparent.val;
-            level[1]=currentlevel;
-        }
-        isParentLevel(root.left,root,currentlevel + 1,x,y,parent,level);
-        isParentLevel(root.right,root,currentlevel + 1,x,y,parent,level);
-        return;
+        Queue<Pair> queue= new LinkedList<>();
+        TreeNode parentOfX=null;
+        TreeNode parentOfY=null;
 
+        queue.add(new Pair(root,new TreeNode(-1)));
+
+        while(!queue.isEmpty()){
+            int currentSize = queue.size();
+
+            for(int i=0;i<currentSize;i++){
+                Pair currentPair= queue.remove();
+                TreeNode currentNode=currentPair.node;
+                TreeNode currentParent=currentPair.parent;
+
+                if(currentNode.val == x){
+                    parentOfX=currentParent;
+                }
+                if(currentNode.val == y){
+                    parentOfY=currentParent;
+                }
+                if(currentNode.left != null){
+                    queue.add(new Pair(currentNode.left,currentNode));
+                }
+                if(currentNode.right != null){
+                    queue.add(new Pair(currentNode.right,currentNode));
+                }
+            }
+            if(parentOfX != null && parentOfY != null){
+                return parentOfX.val != parentOfY.val;
+            }
+            if(parentOfX != null || parentOfY != null){
+                return false;
+            }
+           
+
+        }
+        return false;
     }
 }
