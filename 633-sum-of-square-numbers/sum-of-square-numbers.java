@@ -9,23 +9,5 @@ class Solution {
             else right--;
         }
         return false;
-
-
-
-
-
-
-
-
-
-
-        // int sum=0;
-        // for(int i=1;i<c;i++){
-        //     sum += i * i;
-        //     if(sum == c){
-        //         return true;
-        //     }
-        // }
-        // return false;
     }
 }
