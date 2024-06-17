@@ -1,0 +1,31 @@
+class Solution {
+    public boolean judgeSquareSum(int c) {
+        int left =0;
+        int right=(int)Math.sqrt(c);
+        while(left <= right){
+            long sum = (long)left * left + (long)right * right;
+            if(sum == c)return true;
+            else if(sum < c)left ++;
+            else right--;
+        }
+        return false;
+
+
+
+
+
+
+
+
+
+
+        // int sum=0;
+        // for(int i=1;i<c;i++){
+        //     sum += i * i;
+        //     if(sum == c){
+        //         return true;
+        //     }
+        // }
+        // return false;
+    }
+}
