@@ -28,11 +28,11 @@ class Solution {
                 cnt2++;
             }
         }
-        int min=(int)(nums.length/3)+1;
-        if(cnt1 >= min){
+        int min=nums.length;
+        if(cnt1 > min/3){
             list.add(ele1);
         }
-        if(cnt2 >= min){
+        if(cnt2 > min/3){
             list.add(ele2);
         }
         return list;
