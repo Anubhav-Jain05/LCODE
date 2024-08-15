@@ -6,14 +6,8 @@ class Solution {
             else if(nums[i]==1)count1++;
             else count2++;
         }
-        for(int i=0;i<count;i++){
-            nums[i]=0;
-        }
-        for(int i=count;i<count+count1;i++){
-            nums[i]=1;
-        }
-        for(int i=count+count1;i<nums.length;i++){
-            nums[i]=2;
-        }
+        for(int i=0;i<count;i++)nums[i]=0;
+        for(int i=count;i<count+count1;i++)nums[i]=1;
+        for(int i=count+count1;i<nums.length;i++)nums[i]=2;
     }
 }
