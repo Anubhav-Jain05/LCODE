@@ -22,11 +22,11 @@ class Solution {
         if (candidates[i] > target) {
             break;  // No need to continue if the current candidate exceeds the target
         }
-        // if(candidates[currentIndex] <= target){
+        if(candidates[i] <= target){
             current.add(candidates[i]);
             findCom(candidates,i+1,target-candidates[i],current,list);
             current.remove(current.size()-1);
-        // }
+        }
         // findCom(candidates,currentIndex+1,target,current,list);
         // return;
         }
