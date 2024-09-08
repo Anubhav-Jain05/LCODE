@@ -19,9 +19,9 @@ class Solution {
         if (i > currentIndex && candidates[i] == candidates[i - 1]) {
                 continue;  // Skip duplicate
             }
-        // if (candidates[i] > target) {
-        //     break;  // No need to continue if the current candidate exceeds the target
-        // }
+        if (candidates[i] > target) {
+            break;  // No need to continue if the current candidate exceeds the target
+        }
         if(candidates[i] <= target){
             current.add(candidates[i]);
             findCom(candidates,i+1,target-candidates[i],current,list);
