@@ -1,4 +1,4 @@
-class Solution {
+class Solution {// solution using dp
     public List<List<Integer>> combinationSum(int[] candidates, int target) {
         List<List<Integer>> ans= new ArrayList<>();
         findCom(0,candidates,target,ans,new ArrayList<>());
