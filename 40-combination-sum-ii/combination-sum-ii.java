@@ -1,4 +1,4 @@
-class Solution {
+class Solution {// dp
      public void findCombination(int idx,int[] arr, int target,List<List<Integer>> ans,List<Integer> ds){
         
         if(target==0){
