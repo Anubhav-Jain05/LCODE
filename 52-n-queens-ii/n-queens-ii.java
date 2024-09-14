@@ -1,6 +1,8 @@
 class Solution {
     public int totalNQueens(int n) {
-         List<List<String>> answer=new ArrayList<>();
+        //  List<List<String>> answer=new ArrayList<>();
+        // or
+        int[] answer = {0};
         char[][]board=new char[n][n];
         for(int i=0;i<n;i++){
             for(int j=0;j<n;j++){
@@ -8,11 +10,11 @@ class Solution {
             }
         }
         nQueens(board,0,n,answer);
-        return answer.size();
+        return answer[0];
     }
-    private void nQueens(char[][] board,int currentRow,int n,List<List<String>> answer){
+    private void nQueens(char[][] board,int currentRow,int n,int[] answer){
         if(currentRow == n){
-            answer.add(constructAns(board,n));
+            answer[0] +=1;
             return;
         }
          for(int currentCol=0;currentCol<n;currentCol++){
