@@ -31,11 +31,11 @@ class Solution {
         return false;
     }
     private boolean isValid(char[][] board,int currentRow,int currentCol,int currentVal,int n){
-        return isRowValid(board,currentRow,currentCol,n,currentVal) &&
+        return isRowValid(board,currentRow,currentCol,currentVal,n) &&
                 isColValid(board,currentRow,currentCol,currentVal,n) &&
                 isSubGrid(board,currentRow,currentCol,currentVal,n);
     }
-    private boolean isRowValid(char[][] board,int currentRow,int currentCol,int n,int currentVal){
+    private boolean isRowValid(char[][] board,int currentRow,int currentCol,int currentVal,int n){
         for(currentCol =0;currentCol < n; currentCol++){
             if(board[currentRow][currentCol] == (char)(currentVal +'0')){
                 return false;
