@@ -1,19 +1,21 @@
 class Solution {
     public List<String> generateParenthesis(int n) {
-        List<String> result=new ArrayList<>();
-        maxCombination(result,"",0,0,n);
-        return result;
+        List<String> ans= new ArrayList<>();
+        findall(0,0,"",n,ans);
+        return ans;
+
     }
-    public void maxCombination(List<String> res,String curr,int openCount,int closeCount,int n){
-        if(curr.length() == 2 * n){
-            res.add(curr);
-            return ;
+    private void findall(int openCount,int closeCount,String expression,int n,List<String> ans){
+        if(openCount == closeCount && openCount == n){
+            ans.add(expression);
+            return;
         }
         if(openCount < n){
-            maxCombination(res,curr + "(",openCount + 1,closeCount,n);
+            findall(openCount + 1,closeCount,expression + "(",n,ans);
         }
-        if(closeCount < openCount){
-            maxCombination(res,curr + ")",openCount,closeCount + 1,n);
+        if(openCount > closeCount){
+            findall(openCount,closeCount + 1,expression + ")",n,ans);
         }
+        return;
     }
 }
