@@ -1,28 +1,38 @@
 class Solution {
-   public List<List<String>> partition(String s) {
-        List<List<String>> result = new ArrayList<>();
-        backtrack(result, new ArrayList<>(), s, 0);
+    public List<List<String>> partition(String s) {
+        List<List<String>> result= new ArrayList<>();
+        generateComb(s,0,s.length()-1,new ArrayList<String>(),result);
         return result;
     }
-
-    private void backtrack(List<List<String>> result, List<String> tempList, String s, int start) {
-        if (start == s.length()) {
-            result.add(new ArrayList<>(tempList));
-        } else {
-            for (int end = start + 1; end <= s.length(); end++) {
-                if (isPalindrome(s, start, end - 1)) {
-                    tempList.add(s.substring(start, end));
-                    backtrack(result, tempList, s, end);
-                    tempList.remove(tempList.size() - 1);
-                }
-            }
-        }
+    private void generateComb(String s,int start,int end,ArrayList<String>currentConf,      List<List<String>> result){
+        if(start > end){
+        result.add(new ArrayList<String>(currentConf));
+        return;
     }
 
-    private boolean isPalindrome(String s, int low, int high) {
-        while (low < high) {
-            if (s.charAt(low++) != s.charAt(high--)) return false;
+        for(int i=start;i<=end;i++){
+            String leftPart=s.substring(start,i+1);
+
+            if(isPalindrome(leftPart)){
+                currentConf.add(leftPart);
+                generateComb(s,i+1,end,currentConf,result);
+                currentConf.remove(currentConf.size()-1);
+            }
+
+        }
+        return;
+    }
+    private boolean isPalindrome(String s){
+        int left =0;
+        int right=s.length()-1;
+        while(left <= right){
+            if(s.charAt(left) != s.charAt(right)){
+                return false;
+            }
+            left +=1;
+            right -=1;
         }
         return true;
+
     }
 }
