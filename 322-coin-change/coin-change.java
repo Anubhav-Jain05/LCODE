@@ -6,21 +6,22 @@ class Solution {
 
         return ans;
     }
-    private int minimumWays(int [] coins,int currentIndex,int amt,HashMap<String,Integer>map){
-        if(amt == 0)return 0;
-        if(currentIndex == coins.length)return 10001;
-
-        int currentCoin=coins[currentIndex];
-        String currKey=Integer.toString(currentIndex) + "-"+ Integer.toString(amt);
-        if(map.containsKey(currKey)){
-           return  map.get(currKey);
+   private int minimumWays(int[] coins, int currentIndex, int amt, HashMap<String, Integer> map) {
+        if (amt == 0)
+            return 0;
+        if (currentIndex == coins.length)
+            return 10001;
+        String currentKey = Integer.toString(currentIndex) + "-" + Integer.toString(amt);
+        if (map.containsKey(currentKey)) {
+            return map.get(currentKey);
         }
-        int consider =10001;
-        if(currentCoin <= amt){
-            consider= 1 + minimumWays(coins,currentIndex,amt-currentCoin,map);
+        int currentCoin = coins[currentIndex];
+        int consider = 10001;
+        if (currentCoin <= amt) {
+            consider = 1 + minimumWays(coins, currentIndex, amt - currentCoin, map);
         }
-        int notConsider=minimumWays(coins,currentIndex + 1,amt,map);
-        map.put(currKey, Math.min(consider,notConsider));
-        return map.get(currKey);
+        int not_consider = minimumWays(coins, currentIndex + 1, amt, map);
+        map.put(currentKey, Math.min(consider ,not_consider));
+        return map.get(currentKey);
     }
 }
