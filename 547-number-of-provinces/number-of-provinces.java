@@ -12,17 +12,41 @@ class Solution {
        }
        return ans;
     }
-    private void dfs(int[][] graph,int currentCity,int n,boolean[] visited){
-        if(visited[currentCity])return;
+    // using dfs
+    // private void dfs(int[][] graph,int currentCity,int n,boolean[] visited){
+    //     if(visited[currentCity])return;
 
-        visited[currentCity]=true;
-        int[] neighbour=graph[currentCity];
+    //     visited[currentCity]=true;
+    //     int[] neighbour=graph[currentCity];
 
-        for(int i=0;i<n;i++){
-            if(neighbour[i]==1){
-                dfs(graph,i,n,visited);
+    //     for(int i=0;i<n;i++){
+    //         if(neighbour[i]==1){
+    //             dfs(graph,i,n,visited);
+    //         }
+    //     }
+    //     return;
+    // }
+
+    // using BFS
+
+    private void dfs(int[][] graph,int currentCity,int n, boolean[] visited){
+        Queue<Integer> queue=new LinkedList<>();
+        queue.add(currentCity);
+
+        while(!queue.isEmpty()){
+            int currentVertex=queue.remove();
+            if(visited[currentVertex])
+                continue;
+            
+            visited[currentVertex]=true;
+            int[] neightbour=graph[currentVertex];
+
+            for(int i=0;i<n;i++){
+                if(neightbour[i]==1){
+                    queue.add(i);
+                }
             }
         }
-        return;
+
     }
 } 
