@@ -24,7 +24,7 @@ class Solution {
         sinkIsland(grid,currentrow + 1,currentCol,m,n);
         sinkIsland(grid,currentrow ,currentCol - 1,m,n);
         sinkIsland(grid,currentrow ,currentCol + 1,m,n);
-
+        return;
 
     }
 }
