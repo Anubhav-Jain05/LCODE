@@ -1,37 +1,34 @@
 class Solution {
     public boolean exist(char[][] board, String word) {
-        if(board==null || board.length ==0 || word == null || word.length() == 0)return false;
-
-        int m =board.length;
+        int m=board.length;
         int n=board[0].length;
 
-        for(int i=0;i<m;i++){
-            for(int j=0;j<n;j++){
-                if(board[i][j] == word.charAt(0) && dfs(board,i,j,word,0)){
+        for(int currentRow=0;currentRow<m;currentRow++){
+            for(int currentCol = 0;currentCol < n;currentCol++){
+                if(board[currentRow][currentCol] == word.charAt(0) && 
+                findWord(board,currentRow,currentCol,0,word,m,n)){
                     return true;
                 }
             }
         }
         return false;
     }
-    private boolean dfs(char[][] board,int i,int j,String word,int index){
-        if(index==word.length())return true;
-
-        if(i < 0 || i >= board.length || j < 0 || j >= board[0].length ||
-            board[i][j] != word.charAt(index)){
+    private boolean findWord(char[][] board,int currentRow,int currentCol,int currentIndex,String word,int m,int n){
+        if(currentIndex == word.length())return true;
+        if(currentRow < 0 || currentRow >= m ||
+            currentCol < 0 || currentCol >= n ||
+            board[currentRow][currentCol] != word.charAt(currentIndex)){
                 return false;
         }
-
-        char temp =board[i][j];
-        board[i][j]='#';
-
-        boolean found=dfs(board,i+1,j,word,index + 1) ||
-                      dfs(board,i-1,j,word,index +1)  ||
-                     dfs(board,i,j+1,word,index +1) ||
-                    dfs(board,i,j-1,word,index +1);
-
-        board[i][j]=temp;
+        Character temp=board[currentRow][currentCol];
+        board[currentRow][currentCol] = '.';
+        boolean found=findWord(board,currentRow -1,currentCol,currentIndex + 1,word,m,n);
+        found=found || findWord(board,currentRow +1,currentCol,currentIndex + 1,word,m,n);
+        found=found || findWord(board,currentRow,currentCol - 1,currentIndex + 1,word,m,n);
+        found=found || findWord(board,currentRow,currentCol + 1,currentIndex + 1,word,m,n);
+        board[currentRow][currentCol]=temp;
         return found;
+
 
     }
 }
