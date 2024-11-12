@@ -22,17 +22,22 @@ class Solution {
         int left=0;
         int right=nums.length-1;
 
-        while(left <= right){
-            if(nums[left] == 0){
-                count++;
-                left++;
-            }else if(nums[left] == 1){
-                count1++;
-                left++;
-            }else if(nums[left] == 2){
-                count2 ++;
-                left++;
-            }
+        // while(left <= right){
+        //     if(nums[left] == 0){
+        //         count++;
+        //         left++;
+        //     }else if(nums[left] == 1){
+        //         count1++;
+        //         left++;
+        //     }else if(nums[left] == 2){
+        //         count2 ++;
+        //         left++;
+        //     }
+        // }
+        for(int num:nums){
+            if(num ==0)count++;
+            else if(num == 1)count1++;
+            else count2++;
         }
         for(int i=0;i<count;i++){
             nums[i]=0;
