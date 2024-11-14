@@ -1,49 +1,51 @@
 class Solution {
-    public List<Integer> targetIndices(int[] arr, int target) {
+    public List<Integer> targetIndices(int[] nums, int target) {
         List<Integer> list= new ArrayList<>();
-        Arrays.sort(arr);
-        int firstPostiton=findfirstIndex(arr,target);
-        if(firstPostiton == -1)return list;
-        int lastPostion=findlastIndex(arr,target);
-       for (int i = firstPostiton; i <= lastPostion; i++) {
+        Arrays.sort(nums);
+        int firstPosition=findfirstPosition(nums,target);
+        if(firstPosition == -1)return list;
+        int lastPosition=findlastPosition(nums,target);
+        for(int i=firstPosition;i<=lastPosition;i++){
             list.add(i);
         }
         return list;
-
     }
-    private int findfirstIndex(int[] arr,int target){
+    private int findfirstPosition(int[] nums,int target){
         int ans=-1;
-        int low =0;
-        int high=arr.length-1;
-        while(low <= high){
-            int mid=low + (high - low) /2;
-            if(arr[mid] == target){
+        int start=0;
+        int end=nums.length-1;
+        while(start <= end){
+            int mid=start + (end - start) / 2;
+            if(nums[mid] == target){
                 ans=mid;
-                high=mid-1;
-            }else if(arr[mid] < target){
-                low = mid+1;
-            }else{
-                high=mid-1;
+                end=mid-1;
+            }
+            else if(nums[mid] > target){
+                end=mid-1;
+            }
+            else{
+                start=mid + 1;
             }
         }
         return ans;
     }
-     private int findlastIndex(int[] arr,int target){
+    private int findlastPosition(int[] nums,int target){
         int ans=-1;
-        int low =0;
-        int high=arr.length-1;
-        while(low <= high){
-            int mid=low + (high - low) /2;
-            if(arr[mid] == target){
+        int start=0;
+        int end=nums.length-1;
+        while(start <= end){
+            int mid=start + (end - start) / 2;
+            if(nums[mid] == target){
                 ans=mid;
-                low=mid+1;
-            }else if(arr[mid] < target){
-                low = mid+1;
-            }else{
-                high=mid-1;
+                start=mid+1;
+            }
+            else if(nums[mid] > target){
+                end=mid-1;
+            }
+            else{
+                start=mid + 1;
             }
         }
         return ans;
     }
-
 }
