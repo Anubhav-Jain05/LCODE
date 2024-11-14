@@ -6,9 +6,7 @@ class Solution {
         while(start <= end){
             int mid = start + (end - start) / 2;
             if(nums[mid] == target)return mid;
-            else if(nums[mid] > target){
-                return targetIndex(nums,start,mid-1,target);
-            }
+            else if(nums[mid] > target)return targetIndex(nums,start,mid-1,target);
             else return targetIndex(nums,mid+1,end,target);
         }
         return -1;
