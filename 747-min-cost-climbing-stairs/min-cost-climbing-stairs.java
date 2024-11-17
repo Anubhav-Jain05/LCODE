@@ -3,7 +3,7 @@ class Solution {
         HashMap<Integer,Integer> map = new HashMap<>();
         return Math.min(minCost(cost,0,map),minCost(cost,1,map));
     }
-    private int minCost(int[] cost,int currentIndex,HashMap<Integer,Integer> map){
+    private int minCost(int[] cost,int currentIndex,HashMap<Integer,Integer>map){
         if(currentIndex == cost.length)return 0;
         if(currentIndex > cost.length)return 1001;
 
@@ -11,8 +11,7 @@ class Solution {
         if(map.containsKey(currentKey)){
             return map.get(currentKey);
         }
-
-        int oneJump=cost[currentIndex] + minCost(cost,currentIndex + 1,map);
+        int oneJump=cost[currentIndex] + minCost(cost,currentIndex  +1,map);
         int twoJump=cost[currentIndex] + minCost(cost,currentIndex + 2,map);
         map.put(currentKey,Math.min(oneJump,twoJump));
         return map.get(currentKey);
