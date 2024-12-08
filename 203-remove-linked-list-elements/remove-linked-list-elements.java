@@ -10,20 +10,20 @@
  */
 class Solution {
     public ListNode removeElements(ListNode head, int val) {
-       while(head != null && head.val == val){
-        head=head.next;
-       }
-       if(head== null)return head;
-       ListNode dummy=new ListNode();
-       dummy.next=head;
-       while(head != null && head.next != null){
-        if(head.next.val==val){
-            head.next=head.next.next;
-        }else{
+        while(head != null && head.val == val){
             head=head.next;
         }
+        if(head == null)return head;
+        ListNode dummy=new ListNode();
+        dummy.next=head;
+        while(head != null && head.next != null){
+            if(head.next.val==val){
+                head.next=head.next.next;
+            }else{
+                head=head.next;
+            }
 
-       }
-       return dummy.next;
+        }
+        return dummy.next;
     }
 }
