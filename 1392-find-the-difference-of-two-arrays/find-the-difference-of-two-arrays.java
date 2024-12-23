@@ -16,7 +16,6 @@ class Solution {
             }
         }
         ArrayList<Integer> res1=new ArrayList<>();
-
         for(int num : nums2){
             if(!set.contains(num) && !res1.contains(num)){
                 res1.add(num);   
