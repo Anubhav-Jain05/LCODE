@@ -1,23 +1,19 @@
 class Solution {
     public boolean canArrange(int[] arr, int k) {
-        int n=arr.length;
-        int [] memo =new int[k];
-        for(int curr:arr){
-            int remainder=((curr % k) +k ) %k;
-            memo[remainder] +=1;
+        int[] rem=new int[k];
+        for(int num:arr){
+            int remainder=((num % k) + k) % k;
+            rem[remainder]++;
         }
         for(int i=0;i<=k/2;i++){
-            if(i==0 ){
-                if(memo[i] % 2 != 0)
-                    return false;
+            if(i==0){
+                if(rem[i] % 2 != 0)return false;
+            }else if(i == k-i){
+                if(rem[i] % 2 != 0)return false;
             }else{
-                int y=k-i;
-                if(memo[i] != memo[y]){
-                    return false;
-                }
+               if(rem[i] != rem[k-i])return false;
             }
         }
         return true;
-
     }
 }
