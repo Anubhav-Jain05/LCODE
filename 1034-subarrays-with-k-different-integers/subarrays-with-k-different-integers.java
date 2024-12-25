@@ -1,31 +1,23 @@
 class Solution {
     public int subarraysWithKDistinct(int[] nums, int k) {
-        return countdistinct(nums,k) - countdistinct(nums,k-1);
+        return distinctArr(nums,k) - distinctArr(nums,k-1);
     }
-    private int countdistinct(int[] nums,int k){
-        int ans=0;
-        int release=0;
-        int n=nums.length;
-        HashMap<Integer,Integer> map = new HashMap<>();
-        for(int i=0;i<n;i++){
-            int currentVal=nums[i];
-            if(map.containsKey(currentVal)){
-                map.put(currentVal,map.get(currentVal)+1);
-            }else{
-                map.put(currentVal,1);
-            }
+    private int distinctArr(int[] nums,int k){
+        int start=0;
+        int count=0;
+        HashMap<Integer,Integer> map= new HashMap<>();
+        for(int end=0;end<nums.length;end++){
+            map.put(nums[end],map.getOrDefault(nums[end],0)+1);
 
-            while(release <=  i && map.size() > k){
-                int disValue=nums[release];
-                map.put(disValue,map.get(disValue) -1);
-                release ++;
-
-                if(map.get(disValue) == 0){
-                    map.remove(disValue);
+            while(map.size() > k){
+                map.put(nums[start],map.get(nums[start])-1);
+                if(map.get(nums[start]) == 0){
+                    map.remove(nums[start]);
                 }
+                start++;
             }
-            ans +=i - release + 1; // i== acquire 
+            count += end - start + 1;
         }
-        return ans;
+        return count;
     }
 }
