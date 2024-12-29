@@ -19,23 +19,17 @@ class Node {
 
 class Solution {
     public List<Integer> preorder(Node root) {
-         List<Integer> ans = new ArrayList<>();
-        Stack<Node> stack=new Stack<>();
-        if(root == null){
-            return ans;
+        List<Integer> list= new ArrayList<>();
+        nary(root,list);
+        return list;
+    }
+    private void nary(Node root,List<Integer>list){
+        if(root==null)return;
+        list.add(root.val);
+        List<Node> children=root.children;
+        for(Node child:children){
+            nary(child,list);
         }
-        stack.push(root);
-        while(!stack.isEmpty()){
-            Node currentNode =stack.pop();
-            ans.add(currentNode.val);
-
-          List<Node>children=currentNode.children;
-
-          for(int i=children.size()-1;i>=0;i--){
-            Node currentChild=children.get(i);
-            stack.push(currentChild);
-          }
-        }
-        return ans;
+        return;
     }
 }
