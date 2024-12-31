@@ -6,32 +6,15 @@ class Solution {
         }
         return list;
     }
-    private List<Integer> generateRow(int row){
+    private static List<Integer> generateRow(int row){
         long ans=1;
-        List<Integer> list= new ArrayList<>();
+        List<Integer> list=new ArrayList<>();
         list.add(1);
-        for(int col =1;col< row;col++){
-            ans=ans *(row-col);
+        for(int col=1;col<row;col++){
+            ans=ans * (row-col);
             ans=ans/col;
-            list.add((int) ans);
+            list.add((int)ans);
         }
         return list;
     }
-    // List<List<Integer>> list = new ArrayList<>();
-    // for(int row=1;row<=numRows;row++){
-    //     list.add(generaterow(row));
-    // }
-    // return list;
-    // }
-    // private static List<Integer> generaterow(int row){
-    //     long ans=1;
-    //     List<Integer> list= new ArrayList<>();
-    //     list.add(1);
-    //     for(int col=1;col<row;col++){
-    //         ans=ans * (row-col);
-    //         ans=ans/col;
-    //         list.add((int)ans);
-    //     }
-    //     return list;
-    // }
 }
