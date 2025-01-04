@@ -1,15 +1,39 @@
 class Solution {
     public List<Integer> majorityElement(int[] nums) {
         List<Integer> list= new ArrayList<>();
-        HashMap<Integer,Integer> map = new HashMap<>();
-        for(int i=0;i<nums.length;i++){
-            map.put(nums[i],map.getOrDefault(nums[i],0)+1);
+        if(nums == null || nums.length == 0)return list;
+        if(nums.length == 1){
+            list.add(nums[0]);
+            return list;
         }
-        for(Map.Entry<Integer,Integer>entry:map.entrySet()){
-            if(entry.getValue() > nums.length / 3){
-                list.add(entry.getKey());
+        int candidate1=0,candidate2=0,count1=0,count2=0;
+        for(int num:nums){
+           if(num == candidate1){
+            count1++;
+           }
+            else if(num == candidate2){
+                count2++;
+            }
+             else if(count1 == 0){
+                candidate1=num;
+                count1=1;
+           }else if(count2==0){
+            candidate2 = num;
+            count2=1;
+           }
+            else {
+                count1--;
+                count2--;
             }
         }
+        count1=0;
+        count2=0;
+        for(int num:nums){
+            if(num==candidate1)count1++;
+            else if(num == candidate2)count2++;
+        }
+        if(count1 > nums.length / 3)list.add(candidate1);
+        if(count2 > nums.length / 3)list.add(candidate2);
         return list;
     }
 }
