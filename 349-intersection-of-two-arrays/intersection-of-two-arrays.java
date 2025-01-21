@@ -1,6 +1,6 @@
 class Solution {
     public int[] intersection(int[] nums1, int[] nums2) {
-        HashSet<Integer> set = new HashSet<>();
+        HashSet<Integer>set=new HashSet<>();
         for(int num:nums1){
             set.add(num);
         }
@@ -10,9 +10,9 @@ class Solution {
                 set1.add(num);
             }
         }
-        int[] res=new int[set1.size()];
+        int[]res= new int[set1.size()];
         int index=0;
-        for(int num : set1){
+        for(int num:set1){
             res[index++]=num;
         }
         return res;
