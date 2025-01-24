@@ -1,6 +1,6 @@
 class Solution {
     public int missingNumber(int[] nums) {
-        int indexSum=0;
+        int indexSum =0;
         for(int i=0;i<=nums.length;i++){
             indexSum += i;
         }
