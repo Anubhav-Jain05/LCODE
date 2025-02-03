@@ -1,12 +1,18 @@
 class Solution {
     public int climbStairs(int n) {
-        int[]dp=new int[n+1];
-        dp[0]=1;
-        dp[1]=1;
-        for(int i=2;i<=n;i++){
-            dp[i]=dp[i-1] + dp[i-2];
-        }
-        return dp[n];
+        HashMap<Integer,Integer> map = new HashMap<>();
+        return totalways(n,0,map);
     }
-   
+    private int totalways(int n,int currentIndex,HashMap<Integer,Integer>map){
+        if(currentIndex == n)return 1;
+        if(currentIndex >= n)return 0;
+        int currentKey=currentIndex;
+        if(map.containsKey(currentKey)){
+            return map.get(currentKey);
+        }
+        int onejump=totalways(n,currentIndex + 1,map);
+        int twojump=totalways(n,currentIndex + 2,map);
+        map.put(currentKey,onejump + twojump);
+        return map.get(currentKey);
+    }
 }
