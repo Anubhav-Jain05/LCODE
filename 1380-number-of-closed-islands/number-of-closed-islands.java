@@ -1,45 +1,41 @@
 class Solution {
     public int closedIsland(int[][] grid) {
-        int m= grid.length;
-        int n=grid[0].length;
         int ans=0;
-
-        for(int currentCol=0;currentCol < n;currentCol++){
+        int n=grid.length;
+        int m=grid[0].length;
+        for(int currentCol=0;currentCol < m;currentCol++){
             if(grid[0][currentCol] == 0){
-                dfs(grid,0,currentCol,m,n);
+                land(grid,0,currentCol,n,m);
             }
-            if(grid[m-1][currentCol] == 0){
-                dfs(grid,m-1,currentCol,m,n);
+            if(grid[n-1][currentCol] == 0){
+                land(grid,n-1,currentCol,n,m);
             }
         }
-        for(int currentRow=0;currentRow < m;currentRow++){
+        for(int currentRow=0;currentRow < n;currentRow++){
             if(grid[currentRow][0] == 0){
-                dfs(grid,currentRow,0,m,n);
+                land(grid,currentRow,0,n,m);
             }
-            if(grid[currentRow][n-1] == 0){
-                dfs(grid,currentRow,n-1,m,n);
+            if(grid[currentRow][m-1] == 0){
+                land(grid,currentRow,m-1,n,m);
             }
         }
-        for(int currentRow=0;currentRow < m;currentRow++){
-            for(int currentCol =0;currentCol < n;currentCol++){
-                if(grid[currentRow][currentCol] == 0){
-                    dfs(grid,currentRow,currentCol,m,n);
-                    ans += 1;
+        for(int i=0;i<n;i++){
+            for(int j=0;j<m;j++){
+                if(grid[i][j]==0){
+                    land(grid,i,j,n,m);
+                    ans+=1;
                 }
             }
         }
         return ans;
     }
-
-    private void dfs(int[][] grid,int currentRow,int currentCol,int m,int n){
-        if(currentRow < 0 || currentRow >= m || currentCol < 0 || currentCol >= n || 
-        grid[currentRow][currentCol]==1)return;
-
-        grid[currentRow][currentCol] = 1;
-        dfs(grid,currentRow -1,currentCol,m,n);
-        dfs(grid,currentRow + 1,currentCol,m,n);
-        dfs(grid,currentRow,currentCol -1,m,n);
-        dfs(grid,currentRow,currentCol + 1,m,n);
+    private void land(int[][] grid,int row,int col,int n,int m){
+        if(row < 0 || row >= n || col < 0 || col >= m || grid[row][col] == 1)return;
+        grid[row][col]=1;
+        land(grid,row-1,col,n,m);
+        land(grid,row+1,col,n,m);
+        land(grid,row,col-1,n,m);
+        land(grid,row,col+1,n,m);
         return;
     }
 }
