@@ -1,34 +1,28 @@
 class Solution {
     public List<List<Integer>> findDifference(int[] nums1, int[] nums2) {
-        List<List<Integer>> list= new ArrayList<>();
-        HashMap<Integer,Boolean> map= new HashMap<>();
+        List<List<Integer>> res= new ArrayList<>();
+        HashSet<Integer> set1= new HashSet<>();
         for(int num:nums1){
-            if(!map.containsKey(num)){
-                map.put(num,true);
-            }
+            set1.add(num);
         }
-        HashMap<Integer,Boolean> map2= new HashMap<>();
-        ArrayList<Integer> res= new ArrayList<>();
+        HashSet<Integer> set2=new HashSet<>();
         for(int num:nums2){
-            if(!map2.containsKey(num)){
-                // list.add(num);
-                map2.put(num,true);
-
+            set2.add(num);
+        }
+        ArrayList<Integer>list=new ArrayList<>();
+        for(int i=0;i<nums1.length;i++){
+            if(!set2.contains(nums1[i]) && !list.contains(nums1[i])){
+                list.add(nums1[i]);
             }
         }
-        ArrayList<Integer> res2=new ArrayList<>();
-        for(int num : nums1){
-            if(!map2.containsKey(num) && !res.contains(num)){
-                res.add(num);
+        ArrayList<Integer>list2=new ArrayList<>();
+        for(int i=0;i<nums2.length;i++){
+            if(!set1.contains(nums2[i]) && !list2.contains(nums2[i])){
+                list2.add(nums2[i]);
             }
         }
-         for(int num : nums2){
-            if(!map.containsKey(num) && !res2.contains(num)){
-                res2.add(num);
-            }
-        }
-        list.add(res);
-        list.add(res2);
-        return list;
+        res.add(list);
+        res.add(list2);
+        return res;
     }
 }
