@@ -8,34 +8,15 @@ class Solution {
         }
         for(int num:set){
             if(!set.contains(num-1)){
-                int currentNum=num;
-                int currlen=1;
-                while(set.contains(currentNum + 1)){
-                    currentNum ++;
-                    currlen++;
+                int currNum=num;
+                int currLen=1;
+                while(set.contains(currNum + 1)){
+                    currNum++;
+                    currLen++;
                 }
-                maxlen=Math.max(maxlen,currlen);
+                maxlen = Math.max(maxlen,currLen);
             }
         }
         return maxlen;
-        // int n=nums.length;
-        // int maxlen=0;
-        // HashSet<Integer> set= new HashSet<>();
-        // for(int num : nums){
-        //     set.add(num);
-        // }
-        // for(int num:set){
-        //     if(!set.contains(num-1)){
-        //         int currentnum=num;
-        //         int currentLength=1;
-        //         while(set.contains(currentnum + 1)){
-        //             currentnum++;
-        //             currentLength++;
-        //         }
-        //         maxlen=Math.max(currentLength,maxlen);
-        //     }
-            
-        // }
-        // return maxlen;
     }
 }
