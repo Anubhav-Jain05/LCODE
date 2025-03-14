@@ -1,17 +1,14 @@
 class Solution {
     public int uniquePaths(int m, int n) {
-        return possibleWays(m,n,0,0,new HashMap<String,Integer>());
-    }
-    private int possibleWays(int m,int n,int row,int col,HashMap<String,Integer> map){
-        if(row == m-1 && col == n-1)return 1;
-        if(row >= m || col >= n)return 0;
-        String currentKey=Integer.toString(row)+"-"+Integer.toString(col);
-        if(map.containsKey(currentKey)){
-            return map.get(currentKey);
+        int[][] dp=new int[n][m];
+        for(int i=0;i<n;i++)dp[i][0]=1;
+        for(int j=0;j<m;j++)dp[0][j]=1;
+
+        for(int i=1;i<n;i++){
+            for(int j=1;j<m;j++){
+                dp[i][j]=dp[i-1][j] + dp[i][j-1];
+            }
         }
-        int right=possibleWays(m,n,row,col+1,map);
-        int down=possibleWays(m,n,row+1,col,map);
-        map.put(currentKey,right + down);
-        return map.get(currentKey);
+        return dp[n-1][m-1];
     }
 }
