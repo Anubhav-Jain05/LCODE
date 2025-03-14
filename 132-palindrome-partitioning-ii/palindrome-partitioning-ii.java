@@ -1,35 +1,33 @@
 class Solution {
     public int minCut(String s) {
-        return minimumCut(s,0,s.length()-1,new HashMap<String,Integer>());
+        return minimumcut(s,0,s.length()-1,new HashMap<>());
     }
-    private int minimumCut(String s,int start,int end,HashMap<String,Integer>memo){
-        if(isPlaindrome(s,start,end)){
+    private int minimumcut(String s,int start,int end,HashMap<String,Integer>map){
+        if(isPalindrome(s,start,end)){
             return 0;
         }
-        int ans= 1000000;
-        // String currentKey=start +"-"+end;
-        String currentKey=Integer.toString(start); //O(n)
-        if(memo.containsKey(currentKey)){
-            return memo.get(currentKey);
+        String currentkey=Integer.toString(start);
+        if(map.containsKey(currentkey)){
+            return map.get(currentkey);
         }
-        for(int i=start;i<end;i++){ // line no 15 and 16 TC will be O(n2)
-            if(isPlaindrome(s,start,i)){ 
-                // check if the left half is palindrome then we have 
-                // make a cut otherwise we have not make a cut
-                int tempans=1+minimumCut(s,i+1,end,memo);
-                ans=Math.min(tempans,ans);
+        int ans=1000000;
+        for(int i=start;i<end;i++){
+            if(isPalindrome(s,start,i)){
+                int temp=1+minimumcut(s,i+1,end,map);
+                ans=Math.min(ans,temp);
             }
         }
-        memo.put(currentKey,ans);
+        map.put(currentkey,ans);
         return ans;
     }
-    private boolean isPlaindrome(String s,int start,int end){
-        while(start <= end){
+    private boolean isPalindrome(String s,int start,int end){
+        while(start<=end){
             if(s.charAt(start) != s.charAt(end)){
                 return false;
             }
-            start +=1;
-            end -=1;
+            start ++;
+            end--;
+
         }
         return true;
     }
